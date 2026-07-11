@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratory Notes | Sylvain Vayssier</title>
+  <meta name="description" content="Carnet de recherche: experiments, hypotheses, resultats." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="site-header container">
+    <a class="brand" href="index.html">SV / Research Lab</a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="cv.html">CV</a>
+      <a href="notes.html" class="active">Laboratory Notes</a>
+      <a href="demos.html">Demos</a>
+    </nav>
+  </header>
+
+  <main class="container section">
+  <div class="section-head">
+    <h1>Laboratory Notes</h1>
+    <p>Articles techniques sur simulation, HPC, algorithmes et jumeaux numeriques.</p>
+  </div>
+
+  <div id="articlesList" class="card-grid"></div>
+</main>
+
+<script src="assets/js/articles.js"></script>
+<script>
+  (function () {
+    const root = document.getElementById("articlesList");
+    if (!root || !window.ARTICLES) return;
+
+    const items = [...window.ARTICLES].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+    root.innerHTML = items.map((a) => `
+      <article class="card reveal in">
+        <p class="meta">${a.date} • ${a.readTime}</p>
+        <h3>${a.title}</h3>
+        <p>${a.excerpt}</p>
+        <div class="tag-row">
+          ${a.tags.map((t) => `<span>${t}</span>`).join("")}
+        </div>
+        <a class="card-link" href="${a.href}">Lire l'article</a>
+      </article>
+    `).join("");
+  })();
+</script>

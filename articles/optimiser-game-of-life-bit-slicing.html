@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pourquoi Taichi est fascinant | Laboratory Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="site-header container">
+    <a class="brand" href="../index.html">SV / Research Lab</a>
+    <nav>
+      <a href="../index.html">Accueil</a>
+      <a href="../cv.html">CV</a>
+      <a href="../notes.html" class="active">Laboratory Notes</a>
+      <a href="../demos.html">Demos</a>
+    </nav>
+  </header>
+
+  <main class="container section">
+    <article class="cv-block">
+      <p class="note-date">2026-07</p>
+      <h1>Optimiser Game of Life avec le bit slicing</h1>
+
+      <p>
+        Le Game of Life est simple a decrire, mais couteux a grande echelle.
+        La version naive lit et ecrit beaucoup de memoire, ce qui devient vite le goulot d'etranglement.
+      </p>
+
+      <h2>Probleme: trop d'acces memoire</h2>
+      <p>
+        Cellule par cellule, on lit 8 voisins + l'etat courant. Sur de grandes grilles,
+        le debit memoire domine le temps d'execution.
+      </p>
+
+      <h2>Idee: bit slicing / bit packing</h2>
+      <p>
+        Au lieu de stocker 1 cellule sur 1 octet (ou plus), on compresse 32 cellules dans un entier 32 bits.
+        On traite alors 32 cellules en parallele logique avec des operations bitwise.
+      </p>
+
+      <h2>Ce que cela apporte</h2>
+      <p>
+        1. Moins de memoire transferee.
+      </p>
+      <p>
+        2. Meilleure localite cache.
+      </p>
+      <p>
+        3. Plus de travail utile par instruction.
+      </p>
+
+      <h2>Points de vigilance</h2>
+      <p>
+        1. Gestion des bords (wrap-around ou padding) plus delicate.
+      </p>
+      <p>
+        2. Logique de comptage des voisins plus complexe.
+      </p>
+      <p>
+        3. Debug moins intuitif qu'une grille classique.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        Le bit slicing est un excellent exemple d'optimisation orientee donnees:
+        on ne change pas les regles du systeme, on change la representation pour liberer les performances.
+      </p>
+    </article>
+  </main>
+</body>
+</html>

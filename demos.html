@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics Demos | Sylvain Vayssier</title>
+  <meta name="description" content="Demos interactives de simulation physique en JavaScript Canvas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="site-header container">
+    <a class="brand" href="index.html">SV / Research Lab</a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="cv.html">CV</a>
+      <a href="notes.html">Laboratory Notes</a>
+      <a href="demos.html" class="active">Demos</a>
+    </nav>
+  </header>
+
+  <main class="container section">
+    <div class="section-head">
+      <h1>Physics Demos</h1>
+      <p>Une seule demo active a la fois pour garder un bon framerate.</p>
+    </div>
+
+    <section class="demo-layout">
+      <aside class="demo-panel">
+        <h2>Demo</h2>
+
+        <label class="ctrl">
+          <span>Type</span>
+          <select id="demoSelect">
+            <option value="rope">XPBD Rope (distance constraints)</option>
+            <option value="beam">XPBD Beam (Timoshenko-inspired)</option>
+            <option value="gol">Game of Life bit-packed</option>
+            <option value="murmuration">Murmuration (Boids)</option>
+          </select>
+        </label>
+
+        <div id="demoControls"></div>
+        <p class="demo-help mono" id="stats"></p>
+      </aside>
+
+      <section class="demo-canvas-wrap">
+        <canvas id="simCanvas" aria-label="Physics demo canvas"></canvas>
+      </section>
+    </section>
+  </main>
+
+  <footer class="container site-footer">
+    <p>© <span id="year"></span> Sylvain Vayssier • Physics Demos</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/demos.js"></script>
+</body>
+</html>
