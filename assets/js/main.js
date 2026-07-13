@@ -3,10 +3,13 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   const grid = document.getElementById("project-grid");
-  if (grid && Array.isArray(window.PROJECTS || PROJECTS)) {
-    const source = window.PROJECTS || PROJECTS;
+  const source = typeof window.PROJECTS !== "undefined"
+    ? window.PROJECTS
+    : (typeof PROJECTS !== "undefined" ? PROJECTS : null);
+
+  if (grid && Array.isArray(source)) {
     grid.innerHTML = source.map((p) => {
-      const tags = p.tags.map((t) => `<span>${t}</span>`).join("");
+      const tags = (p.tags || []).map((t) => `<span>${t}</span>`).join("");
       return `
         <article class="card reveal">
           <div class="card-top">
@@ -22,6 +25,13 @@
   }
 
   const reveals = document.querySelectorAll(".reveal");
+  if (!reveals.length) return;
+
+  if (typeof IntersectionObserver === "undefined") {
+    reveals.forEach((el) => el.classList.add("in"));
+    return;
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) entry.target.classList.add("in");
