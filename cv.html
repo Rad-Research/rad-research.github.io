@@ -107,9 +107,22 @@
     <section class="cv-block">
       <h2>Contact</h2>
       <p><em>Pour échanger, collaborer ou me contacter.</em></p>
-      <p>
-        <a href="mailto:28869091+Rad-Research@users.noreply.github.com">28869091+Rad-Research@users.noreply.github.com</a>
-      </p>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrpbpelr" method="POST">
+        <label class="ctrl">
+          <span>Nom</span>
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label class="ctrl">
+          <span>Email</span>
+          <input type="email" name="_replyto" autocomplete="email" required />
+        </label>
+        <label class="ctrl">
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button class="btn" type="submit">Envoyer</button>
+        <p class="form-status" id="contactStatus" role="status" hidden></p>
+      </form>
       <p>
         <a href="https://www.linkedin.com/in/sylvain-vayssier-4481a216b" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </p>
