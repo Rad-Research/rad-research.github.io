@@ -29,4 +29,40 @@
   }, { threshold: 0.12 });
 
   reveals.forEach((el) => io.observe(el));
+
+  const contactForm = document.getElementById("contactForm");
+  const contactStatus = document.getElementById("contactStatus");
+  if (contactForm && contactStatus) {
+    contactForm.addEventListener("submit", async (evt) => {
+      evt.preventDefault();
+      const submitBtn = contactForm.querySelector("button[type=submit]");
+
+      contactStatus.hidden = false;
+      contactStatus.className = "form-status";
+      contactStatus.textContent = "Envoi en cours...";
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: { Accept: "application/json" }
+        });
+
+        if (response.ok) {
+          contactStatus.textContent = "Message envoye, merci ! Je reponds au plus vite.";
+          contactStatus.classList.add("ok");
+          contactForm.reset();
+        } else {
+          contactStatus.textContent = "Erreur d'envoi. Reessaie ou passe par LinkedIn.";
+          contactStatus.classList.add("error");
+        }
+      } catch (err) {
+        contactStatus.textContent = "Erreur reseau. Reessaie ou passe par LinkedIn.";
+        contactStatus.classList.add("error");
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
 })();

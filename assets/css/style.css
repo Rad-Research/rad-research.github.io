@@ -399,6 +399,54 @@ h1 {
   padding: 0.45rem;
 }
 
+.contact-form {
+  max-width: 480px;
+  margin-top: 0.6rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: #0b1220;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-form button {
+  cursor: pointer;
+  border: 1px solid var(--accent);
+}
+
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin: 0.7rem 0 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.88rem;
+}
+
+.form-status.ok {
+  color: var(--accent-2);
+}
+
+.form-status.error {
+  color: #ff6b6b;
+}
+
 #demoControls {
   display: grid;
   gap: 0.65rem;
